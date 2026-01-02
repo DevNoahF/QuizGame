@@ -1,0 +1,18 @@
+/* Basic Reset */
+
+/* por padrão o css usa: box-sizing: content-box;
+   Isso significa que:
+    width e height só contam o conteúdo
+    padding e border são somados depois
+    o que faz o elemento "estourar" o layout sem voce perceber
+    Com border-box:
+    width e height incluem:
+    conteúdo + padding + border
+    Ou seja, o tamanho nunca ultrapassa o valor definido.
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

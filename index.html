@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title><link rel="stylesheet" href="style.css">
+</head>
+<!-- QUANDO USAR ID VS CLASS:
+       REGRA PRINCIPAL:
+         USE "ID" QUNADO O ELEMENTO FOR UNICO NA PAGINA
+         USE "CLASS" QUANDO O ESTILO OU COMPORTAMENTO FOR REUTILIZAVEL
+         * em caso de duvida, use class *
+         ---
+    Quando usar *ID*
+    Use id quando:
+
+        O elemento aparece uma única vez na página
+
+        Ele precisa ser referenciado diretamente
+
+        Ele tem uma função específica
+        ---
+    Quando usar *CLASS*
+    Use class quando:
+
+        O estilo será reutilizado
+
+        O comportamento será aplicado em vários elementos
+
+        O elemento faz parte de um grupo
+    ⚠️ Por que evitar id para CSS?
+1️⃣ Especificidade alta
+    *ID* tem mais peso que *CLASS*, o que dificulta manutenção.
+
+2️⃣ CSS reutilizável fica impossível
+    id é único → não reutiliza.
+
+3️⃣ Em frameworks modernos (React)
+    👉 Quase nunca se usa id para estilização
+        Classes ou CSS-in-JS dominam.
+-->
+
+
+
+<body>
+    <div class="container">
+        <div class="screen active" id="init-screen">
+            <h1>Quiz Game</h1>
+            <p>bem vinco ao quiz game, aqui voce testará seus conhecimentos 
+                em diversos assuntos se divertindo ao mesmo tempo!
+            </p>
+            <button id="start-btn">Start</button>
+        </div>
+        <div class="screen" id="quiz-screen">
+            <h2 id="question-text">questão 1 here</h2>
+            <div class="quiz-info">
+                <p>
+                    Questão <span id="current-question">1</span> de <span>5</span>
+                </p>
+
+                <p>
+                    Pontuação: <span id="score">0</span>
+                </p>
+            </div>
+        </div>
+        <div id="answers-container" class="answers-container">
+            <!-- os botoes de perguntas irão ser adicionados aqui
+                 pelo javascript code depois-->
+
+        </div>
+        <div class="progress-bar">
+            <div id="progress" class="progress">
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <h1>Resultado Quiz</h1>
+            <div class="result-info">
+                <p>Seu resultado: <span id="final-score">0</span> de <span id="total-questions">5</span></p>
+
+                <div id="result-message"> Parabens! Você é muito esperto</div>
+            </div>
+            <div id="restart-message">
+                <button id="restart-btn">Reiniciar Quiz</button>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
