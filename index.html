@@ -44,9 +44,9 @@
 
 <body>
     <div class="container">
-        <div class="screen active" id="init-screen">
-            <h1>Quiz Game</h1>
-            <p>bem vinco ao quiz game, aqui voce testará seus conhecimentos 
+        <div class="screen active" id="start-screen">
+            <h1 id="quizh1">Quiz Game</h1>
+            <p>bem vindo ao quiz game, aqui voce testará seus conhecimentos 
                 em diversos assuntos se divertindo ao mesmo tempo!
             </p>
             <button id="start-btn">Start</button>
@@ -55,7 +55,8 @@
             <h2 id="question-text">questão 1 here</h2>
             <div class="quiz-info">
                 <p>
-                    Questão <span id="current-question">1</span> de <span>5</span>
+                    Questão <span id="current-question">1</span> de 
+                    <span>5</span>
                 </p>
 
                 <p>
@@ -64,6 +65,7 @@
             </div>
         </div>
         <div id="answers-container" class="answers-container">
+            
             <!-- os botoes de perguntas irão ser adicionados aqui
                  pelo javascript code depois-->
 
@@ -87,5 +89,6 @@
 
 
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
