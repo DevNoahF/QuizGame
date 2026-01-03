@@ -28,9 +28,9 @@ body{
 }
 
 .container{
-    background-color: aliceblue;
+    background-color: rgb(225, 236, 246);
     border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.30);
     width: 600px;
     overflow: relative;
 }
@@ -46,20 +46,19 @@ body{
     display: block;
 }
 
-#quizh1{
-    color: cadetblue;
-}
-
 /* start screen */
 
 #start-screen h1{
-    color: blue;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
+    color: #ff8133;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    border-radius: 10px;
+    padding: 10px;
+    text-shadow: #ff8c2e 2px 2px 4px;
 }
 
 #start-screen p{
-    color: #666;
+    color: #55505C;
     margin-bottom: 30px;
     font-size: 1.1rem;
 }
@@ -78,7 +77,7 @@ body{
 .quiz-info{
     display: flex;
     justify-content: space-between;
-    color: gray;
+    color: #55505C;
     margin-bottom: 10px;
 }
 
@@ -92,7 +91,7 @@ body{
 .answer-btn{
     background-color: white;
     color: black;
-    border: 2px solid blue;
+    border: 2px solid black;
     border-radius: 10px;
     padding: 1rem;
     cursor: pointer;
@@ -101,25 +100,25 @@ body{
 }
 
 .answer-btn:hover{
-    background-color: lightblue;
-    border-color: darkblue;
+    background-color: #3baffc;
+    border-color: #59626D;
 }
 
 .answer-btn.correct{
-    background-color: greenyellow;
-    border-color: gold;
-    color: darkgreen;
+    background-color: #4ef8a6;
+    border-color: #59626D;
+    color: black;
 }
 
 .answer-btn.incorrect{
-    background-color: salmon;
-    border-color: gold;
-    color: red
+    background-color: #f92424;
+    border-color: #59626D;
+    color: black
 }
 
 .progress-bar{
     height: 10px;
-    background-color: lightskyblue;
+    background-color: #ECA367;
     border-radius: 5px;
     overflow: hidden;
     margin-top: 20px;
@@ -127,7 +126,7 @@ body{
 
 .progress{
     height: 100%;
-    background-color: deepskyblue;
+    background-color: #FFC022;
     width: 0%;
     transition: width 0.3s ease;
 }
@@ -135,7 +134,7 @@ body{
 /* result screen */
 
 #result-screen h1{
-    color: blue;
+    color: black;
     margin-bottom: 30px;
 }
 
@@ -149,11 +148,11 @@ body{
 .result-info p{
     font-size: 1.2 rem;
     font-weight: 600;
-    color: blue;
+    color: black;
 }
 
 button{
-    background-color: cadetblue;
+    background-color: #ff8133;
     color: white;
     border: none;
     border-radius: 10px;
@@ -164,7 +163,7 @@ button{
 }
 
 button:hover{
-    background-color: rgb(35, 94, 96);
+    background-color: #ea6a00  ;
 }
 
 

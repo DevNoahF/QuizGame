@@ -17,7 +17,7 @@ const progressBar = document.getElementById("progress");
 const quizData = [
     {
         question: "Qual é o maior planeta do nosso sistema solar?",
-        answers: [ // Corrigido de 'asnswers'
+        answers: [ 
             { text: "Terra", correct: false },
             { text: "Júpiter", correct: true },
             { text: "Saturno", correct: false },
@@ -25,7 +25,7 @@ const quizData = [
         ],
     },
     {
-        question: "Qual o elemento químico representado pelo símbolo *Au* na tabela periódica?", // Adicionada vírgula
+        question: "Qual o elemento químico representado pelo símbolo *Au* na tabela periódica?", 
         answers: [
             { text: "Prata", correct: false },
             { text: "Ouro", correct: true },
@@ -34,7 +34,7 @@ const quizData = [
         ],
     },
     {
-        question: "O que acontece quando ocorre um *Stack Overflow* em um programa?", // Adicionada vírgula
+        question: "O que acontece quando ocorre um *Stack Overflow* em um programa?",
         answers: [
             { text: "O programa termina o processamento antes do esperado por falta de dados", correct: false },
             { text: "A memória reservada para a pilha de chamadas de funções é excedida, geralmente por uma recursão infinita", correct: true },
@@ -43,7 +43,7 @@ const quizData = [
         ],
     },
     {
-        question: "Qual comando é utilizado para criar uma nova ramificação (branch) e mudar para ela simultaneamente?", // Adicionada vírgula
+        question: "Qual comando é utilizado para criar uma nova ramificação (branch) e mudar para ela simultaneamente?",
         answers: [
             { text: "git branch <nome-da-branch>", correct: false },
             { text: "git checkout <nome-da-branch>", correct: false },
@@ -52,7 +52,7 @@ const quizData = [
         ],
     },
     {
-        question: "Qual cláusula SQL é usada para filtrar os resultados de uma consulta baseada em uma condição específica?", // Adicionada vírgula
+        question: "Qual cláusula SQL é usada para filtrar os resultados de uma consulta baseada em uma condição específica?", 
         answers: [
             { text: "WHERE", correct: true },
             { text: "HAVING", correct: false },
@@ -61,3 +61,120 @@ const quizData = [
         ],
     },
 ];
+
+// quiz state variables
+let currentQuestionIndex = 0;
+let score = 0;
+let answersDisabled = false;
+
+totalQuestionsSpan.textContent = quizData.length;
+maxScoreSpan.textContent = quizData.length;
+
+// event listeners
+startButton.addEventListener("click", startQuiz);
+restartButton.addEventListener("click", restartQuiz);
+
+function startQuiz() {
+    console.log("Quiz started");
+    currentQuestionIndex = 0;
+    score = 0;
+    scoreSpan.textContent = score;
+
+    startScreen.classList.remove("active");
+    quizScreen.classList.add("active");
+    showQuestion();
+}
+function showQuestion() {
+    // reset state
+    answersDisabled = false;
+
+    const currentQuestion = quizData[currentQuestionIndex];
+
+    currentQuestionSpan.textContent = currentQuestionIndex + 1;
+
+    const progressPercent = ((currentQuestionIndex + 1) / quizData.length) * 100;
+    progressBar.style.width = progressPercent + "%";
+
+    questionText.textContent = currentQuestion.question; // define o texto da pergunta atual
+
+    // limpa as respostas anteriores
+    while (answersContainer.firstChild) {
+        answersContainer.removeChild(answersContainer.firstChild);
+
+    }
+
+    //  todo: explain this in a second
+    answersContainer.innerHTML = "";
+
+    currentQuestion.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.textContent = answer.text;
+        button.classList.add("answer-btn");
+
+        // dataset é um objeto que permite armazenar dados personalizados em elementos HTML
+        // aqui estamos armazenando se a resposta é correta ou não
+        button.dataset.correct = answer.correct;
+
+        button.addEventListener("click",selectAnswer);
+        // appendChild adiciona o botão criado ao container de respostas
+        answersContainer.appendChild(button);
+    });
+}
+
+function selectAnswer(event){
+    // otimização para evitar múltiplos cliques
+    if(answersDisabled) return
+    answersDisabled = true;
+    const selectedButton = event.target;
+    const isCorrect = selectedButton.dataset.correct === "true"; 
+
+    // children retorna uma coleção ao vivo dos elementos filhos de um elemento pai
+    Array.from(answersContainer.children).forEach((button) => {
+        if(button.dataset.correct === "true" ){
+            button.classList.add("correct");
+        }else if(button === selectedButton && !isCorrect){
+            button.classList.add("incorrect");
+        }
+    });
+
+    if(isCorrect){
+        score++;
+        scoreSpan.textContent = score;
+        
+    }
+
+    setTimeout(() => {
+        currentQuestionIndex++;
+        if(currentQuestionIndex < quizData.length){
+            showQuestion();
+        }else{
+            showResult();
+        }
+    }, 1000);
+}
+
+function showResult() {
+    quizScreen.classList.remove("active");
+    resultScreen.classList.add("active");
+
+    finalScoreSpan.textContent = score;
+
+    const percentage = (score / quizData.length) * 100;
+
+    if(percentage ===100){
+        resultMessage.textContent = "Caramba! Voce acertou todas as perguntas, tu é o cara! :D";
+    }else if(percentage >= 70){
+        resultMessage.textContent = "Muito bom, voce se saiu bem! :D";
+    }else if(percentage >= 40){
+        resultMessage.textContent = "Voce passou, porem, poderia ter ido melhor. :(";
+    }else{
+        resultMessage.textContent = "Que pena, voce não se saiu bem dessa vez. Tente novamente! :(";
+    }
+}
+
+function restartQuiz() {
+    console.log("Quiz restarted");
+    resultScreen.classList.remove("active");
+    startQuiz();
+}
+
